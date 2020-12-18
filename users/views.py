@@ -1,6 +1,7 @@
 # Import
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.utils.translation import gettext as _
 
 
 # Views
@@ -13,6 +14,6 @@ def hello(request):
         request,
         'users/hello.html',
         {
-            'message': "Hello Wolrd !",
+            'message': _("Hello Wolrd !"),
         }
     )
