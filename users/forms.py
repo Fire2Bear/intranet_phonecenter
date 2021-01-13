@@ -76,8 +76,9 @@ class AccountSettingsForm(ModelFormWithSubmit):
     display_name = forms.CharField(
         label="Nom d'affichage",
         max_length=256,
+        required=False,
     )
 
     class Meta:
         model = UserProfile
-        fields = ('display_name',)
+        fields = ('display_name', 'newsletter_agreement',)
