@@ -13,6 +13,7 @@ py -m venv venv_intranet
 # Then entering into this venv
 venv_intranet/bin/activate
 
-
+# Une fois dans le Venv pour start le serveur 
+python manage.py runserver 127.0.0.0:8080
 
 ````
