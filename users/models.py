@@ -13,25 +13,24 @@ class BaseModel(models.Model):
 
 
 class UserProfile(AbstractUser, BaseModel):
-
     USER_TYPE_CHOICES = (
         (1, 'team_member'),
         (2, 'client'),
-        )
+    )
 
     user_type = models.PositiveSmallIntegerField(
         choices=USER_TYPE_CHOICES,
         default=None,
         blank=True,
         null=True,
-        )
+    )
 
     display_name = models.TextField(
         verbose_name="Nom d'affichage",
         default=None,
         blank=True,
         null=True,
-        )
+    )
 
     def __str__(self):
         if self.display_name:
@@ -42,30 +41,34 @@ class UserProfile(AbstractUser, BaseModel):
     class Meta:
         verbose_name = "Utilisateur"
         verbose_name_plural = "Utilisateurs"
-        ordering = ("created", )
+        ordering = ("created",)
 
 
 class TeamMember(BaseModel):
-
     team_member = models.OneToOneField(
         UserProfile,
         on_delete=models.CASCADE,
         primary_key=True,
-        )
+    )
 
     support_level = models.PositiveSmallIntegerField(
         default=1,
-        )
+    )
+
+    def __str__(self):
+        return self.team_member
 
 
 class Customer(BaseModel):
-
     customer = models.OneToOneField(
         UserProfile,
         on_delete=models.CASCADE,
         primary_key=True,
-        )
+    )
 
     credits = models.IntegerField(
         default=0,
-        )
+    )
+
+    def __str__(self):
+        return self.customer
