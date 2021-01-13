@@ -53,18 +53,22 @@
         </li>
     </ul>
     {% endif %}
+    {% if request.user.is_superuser %}
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
 
-            {% if request.user.is_superuser %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'admin:index' %}">Admin Django</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'users:role_attribution' %}">Attribuer des rôles</a>
+            </li>
 
-            {% endif %}
+
         </ul>
-
     </div>
+    {% endif %}
+
 </nav>
 
 {% block body_header %}{% endblock body_header %}
