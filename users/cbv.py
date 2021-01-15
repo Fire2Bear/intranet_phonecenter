@@ -24,11 +24,15 @@ class TeamMemberCreate(UserPassesTestMixin, CreateView):
         return form
 
     def get_form_kwargs(self):
+        print(self.kwargs)
+        print(self.kwargs['user_id'])
         kwargs = super(TeamMemberCreate, self).get_form_kwargs()
         if kwargs['instance'] is None:
             kwargs['instance'] = TeamMember()
         user = UserProfile.objects.get(pk=self.kwargs['user_id'])
         kwargs['instance'].teammember = user
+        print(user)
+        print(kwargs['instance'])
         user.user_type = 1
         user.save()
         return kwargs
