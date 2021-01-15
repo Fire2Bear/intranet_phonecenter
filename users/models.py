@@ -39,6 +39,12 @@ class UserProfile(AbstractUser, BaseModel):
         db_index=True,
     )
 
+    def is_teammember(self):
+        return self.user_type == 1
+
+    def is_customer(self):
+        return self.user_type == 2
+
     def __str__(self):
         if self.display_name:
             return self.display_name
@@ -49,6 +55,12 @@ class UserProfile(AbstractUser, BaseModel):
         verbose_name = "Utilisateur"
         verbose_name_plural = "Utilisateurs"
         ordering = ("created",)
+
+
+def is_teammember(user=None):
+    if not user or user.is_anonymous:
+        return False
+    return user.user_type == 1
 
 
 class TeamMember(BaseModel):
