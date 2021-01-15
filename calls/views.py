@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect
 
-from users.views import is_teammember
 
 # Create your views here.
+from users.models import is_teammember
 from .forms import NewCallForm
 from .models import Call
 
@@ -26,6 +26,6 @@ def new_call(request):
         'utils/form.html',
         {
             'title': "Nouvel Appel",
-            'form': form,
+            'form':form,
         }
     )

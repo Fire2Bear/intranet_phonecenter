@@ -60,7 +60,7 @@ class UserProfile(AbstractUser, BaseModel):
 def is_teammember(user=None):
     if not user or user.is_anonymous:
         return False
-    return user.user_type == 1
+    return user.is_teammember()
 
 
 class TeamMember(BaseModel):
