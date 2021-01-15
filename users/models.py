@@ -14,7 +14,7 @@ class BaseModel(models.Model):
 
 class UserProfile(AbstractUser, BaseModel):
     USER_TYPE_CHOICES = (
-        (1, 'team_member'),
+        (1, 'teammember'),
         (2, 'client'),
     )
 
@@ -57,14 +57,8 @@ class UserProfile(AbstractUser, BaseModel):
         ordering = ("created",)
 
 
-def is_teammember(user=None):
-    if not user or user.is_anonymous:
-        return False
-    return user.is_teammember()
-
-
 class TeamMember(BaseModel):
-    team_member = models.OneToOneField(
+    teammember = models.OneToOneField(
         UserProfile,
         on_delete=models.CASCADE,
         primary_key=True,
@@ -75,7 +69,7 @@ class TeamMember(BaseModel):
     )
 
     def __str__(self):
-        return self.team_member
+        return self.teammember
 
 
 class Customer(BaseModel):

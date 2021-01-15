@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect
 
 # Create your views here.
-from users.models import is_teammember
+from users.views import is_teammember
 from .forms import NewCallForm
 from .models import Call
 

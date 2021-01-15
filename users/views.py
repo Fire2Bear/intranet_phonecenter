@@ -10,6 +10,12 @@ from .forms import RegisterForm, AccountSettingsForm
 from .models import UserProfile
 
 
+def is_teammember(user=None):
+    if not user or user.is_anonymous:
+        return False
+    return user.is_teammember()
+
+
 # Views
 def hello_old(request):
     return HttpResponse("Hello Wolrd !")
